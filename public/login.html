@@ -116,7 +116,7 @@
         const storage = firebase.storage();
 
         var 뺀거 = localStorage.getItem('user')
-        $('#userName').html(JSON.parse(뺀거).displayName)
+        //$('#userName').html(JSON.parse(뺀거).displayName)
 
         firebase.auth().onAuthStateChanged((user)=>{
             if (user){
