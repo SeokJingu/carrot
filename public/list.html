@@ -58,17 +58,19 @@
           </div>
           <div>
               ${doc.data().nick} @${doc.data().id}</p>
-              <p class="title"><a href="/detail.html?id=${doc.id}">${doc.data().내용}</a></h5>
-              <p class="date">2${doc.data().날짜}</p>
+              <p class="title"><a href="/detail.html?id=${doc.id}">${doc.data().내용}</h5></p>
+              <center><img src='${doc.data().이미지}' style="max-height: 500px; max-width: 500; border-radius: 10px;"></center>
+              <p class="date">${doc.data().날짜}</p>
               <p class="price">${doc.data().가격}</p>
-              <p class="float-end">ㅁ</p>
+              <p class="float-end">ㅁ</a></p>
           </div>          
         </div>
         <center>
         <div class="row">
           <div class="col"> <button type="submit" class="btn btn-primary" id="login">YES</button></div>
           <div class="col"> <button type="submit" class="btn btn-primary" id="login">NO</button></div>
-        </div></center>`;
+        </div></center>
+        <hr>`;
         $('.container').append(템플릿)
       })
 
