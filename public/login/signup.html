@@ -44,19 +44,22 @@
             <input type="email" class="form-control" placeholder="email" id="email-new">
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" placeholder="pw" id="pw-new">
+            <input type="password" class="form-control" placeholder="pw" id="pw-new_1">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="username" id="name-new">
+            <input type="password" class="form-control" placeholder="pw" id="pw-new_2">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="name" id="email">
+            <input type="text" class="form-control" placeholder="id" id="user_id">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="URL" id="pw">
+            <input type="text" class="form-control" placeholder="name" id="name">
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Bio" id="pw">
+            <input type="url" class="form-control" placeholder="URL" id="URL">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Bio" id="Bio">
         </div>
         <button type="submit" class="btn btn-primary" id="register">가입하기</button>
 
@@ -67,29 +70,40 @@
         const db = firebase.firestore();
         const storage = firebase.storage();
 
-
-
         $('#register').click(function () {
             var email = $('#email-new').val();
             var password_1 = $('#pw-new_1').val();
             var password_2 = $('#pw-new_2').val();
-            var id = $('#name-new').val();
-            var nickname = $('#name-new').val();
-            var 이름 = $('#name-new').val();
-            var 이름 = $('#name-new').val();
-            firebase.auth().createUserWithEmailAndPassword(이메일, 패스워드).then((result) => {
-                (result)=>{
-                    var 유저정보 = {
-                        name : 이름,
-                        email :이메일,
-                        
-                    }
-                    db.collection('user').doc(result.user.uid).set(유저정보)
-                }
+            var user_id = $('#user_id').val();
+            var nickname = $('#name').val();
+            var url = $('#URL').val();
+            var bio = $('#Bio').val();
 
-                result.user.updateProfile({displayName: 이름})
-            })
+            if (password_1 == password_2) {
+                firebase.auth().createUserWithEmailAndPassword(email, password_1).then((result) => {
+                    {
+                        console.log("success")
+                        var 유저정보 = {
+                            user_id: user_id,
+                            name: nickname,
+                            email: email,
+                            url: url,
+                            bio: bio,
+                        }
+                        console.log(result.user.uid)
+                        db.collection('user').doc(result.user.uid).set(유저정보)
+                    }
+                    
+
+                    //result.user.updateProfile({ displayName: 이름 })
+                }
+                )
+            }
+            else {
+                console.log("패스워드입력이 동일하지 않습니다.");
+            }
         })
+
 
 
     </script>
