@@ -80,8 +80,10 @@
             var bio = $('#Bio').val();
 
             if (password_1 == password_2) {
-                firebase.auth().createUserWithEmailAndPassword(email, password_1).then((result) => {
+                firebase.auth().createUserWithEmailAndPassword(email, password_1)
+                .then((result) => {
                     {
+                        
                         console.log("success")
                         var 유저정보 = {
                             user_id: user_id,
@@ -93,11 +95,14 @@
                         console.log(result.user.uid)
                         db.collection('user').doc(result.user.uid).set(유저정보)
                     }
-                    
-
                     //result.user.updateProfile({ displayName: 이름 })
-                }
-                )
+                    window.location.href = "../index.html";
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ..
+                });   
             }
             else {
                 console.log("패스워드입력이 동일하지 않습니다.");
